@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SayfaKur — 2 Dakikada WhatsApp Mağaza Sayfası Oluştur</title>
+    <meta name="description" content="SayfaKur ile 2 dakikada WhatsApp mağaza sayfası, CV, portföy ve satış sayfası oluşturun. Ücretsiz deneyin!">
+    <meta name="keywords" content="whatsapp mağaza, online mağaza, sipariş sayfası, mini site oluştur, sayfakur">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://sayfakur.vercel.app/">
+    <meta property="og:title" content="SayfaKur — 2 Dakikada Online Mağaza Sayfası">
+    <meta property="og:description" content="WhatsApp mağaza sayfası, CV, satış sayfası oluştur. Ücretsiz başla!">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sayfakur.vercel.app/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="navbar-inner">
+        <a href="/" class="navbar-logo">
+            <span>⚡</span> SayfaKur
+        </a>
+
+        <button class="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <div class="navbar-links" id="nav-links">
+            <a href="#ozellikler">Özellikler</a>
+            <a href="#nasil-calisir">Nasıl Çalışır</a>
+            <a href="#fiyatlandirma">Fiyatlandırma</a>
+            <a href="/giris.html" class="nav-btn nav-btn-ghost">Giriş Yap</a>
+            <a href="/kayit.html" class="nav-btn nav-btn-primary">Ücretsiz Başla</a>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-content">
+        <div class="hero-badge">
+            <span class="dot"></span>
+            14 gün ücretsiz dene — kart bilgisi gerekmez
+        </div>
+        <h1>
+            Online Mağazanı<br>
+            <span class="gradient-text">2 Dakikada</span> Kur
+        </h1>
+        <p>
+            WhatsApp sipariş sayfası, CV, portföy veya satış sayfası oluştur.
+            Kod bilgisi gerektirmez. Hemen yayınla, müşterilerini bul.
+        </p>
+        <div class="hero-buttons">
+            <a href="/kayit.html" class="btn btn-primary btn-lg">
+                🚀 Ücretsiz Başla
+            </a>
+            <a href="#nasil-calisir" class="btn btn-secondary btn-lg">
+                📖 Nasıl Çalışır?
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ÖZELLİKLER -->
+<section class="section" id="ozellikler">
+    <div class="section-header animate-on-scroll">
+        <h2>Her İhtiyaca <span class="gradient-text">Bir Sayfa</span></h2>
+        <p>Kod bilmene gerek yok. Formu doldur, sayfanı yayınla, siparişlerini al.</p>
+    </div>
+
+    <div class="features-grid">
+        <div class="feature-card animate-on-scroll">
+            <span class="feature-icon">🛒</span>
+            <h3>WhatsApp Mağaza</h3>
+            <p>Ürünlerini sergile, müşterilerin WhatsApp'tan sipariş versin. Instagram satıcıları için mükemmel.</p>
+        </div>
+
+        <div class="feature-card animate-on-scroll">
+            <span class="feature-icon">📄</span>
+            <h3>CV & Portföy</h3>
+            <p>Profesyonel online CV ve portföy sayfası. Paylaşılabilir link ile her yere gönder.</p>
+        </div>
+
+        <div class="feature-card animate-on-scroll">
+            <span class="feature-icon">💰</span>
+            <h3>Satış Sayfası</h3>
+            <p>E-kitap, kurs, danışmanlık sat. Basit ve etkili satış sayfası oluştur.</p>
+        </div>
+
+        <div class="feature-card animate-on-scroll">
+            <span class="feature-icon">🏠</span>
+            <h3>Emlak İlanı</h3>
+            <p>Mülklerini profesyonel sayfalarla tanıt. Görseller, konum, iletişim hepsi bir arada.</p>
+        </div>
+
+        <div class="feature-card animate-on-scroll">
+            <span class="feature-icon">📊</span>
+            <h3>Analitik</h3>
+            <p>Sayfanı kaç kişi görüntüledi? Nereden geldiler? Tüm verileri takip et.</p>
+        </div>
+
+        <div class="feature-card animate-on-scroll">
+            <span class="feature-icon">📱</span>
+            <h3>Mobil Uyumlu</h3>
+            <p>Tüm sayfalar telefon, tablet ve bilgisayarda mükemmel görünür.</p>
+        </div>
+    </div>
+</section>
+
+<!-- NASIL ÇALIŞIR -->
+<section class="section" id="nasil-calisir" style="background:rgba(124,58,237,0.03);">
+    <div class="section-header animate-on-scroll">
+        <h2>Nasıl <span class="gradient-text">Çalışır?</span></h2>
+        <p>3 adımda online mağazanı kur</p>
+    </div>
+
+    <div class="steps-grid">
+        <div class="step-item animate-on-scroll">
+            <div class="step-number">1</div>
+            <h3>Kayıt Ol</h3>
+            <p>E-posta ve şifre ile ücretsiz hesap oluştur. 30 saniye sürer.</p>
+        </div>
+
+        <div class="step-item animate-on-scroll">
+            <div class="step-number">2</div>
+            <h3>Sayfanı Oluştur</h3>
+            <p>Formu doldur, ürünlerini ekle, temayı seç. Kod yazmana gerek yok.</p>
+        </div>
+
+        <div class="step-item animate-on-scroll">
+            <div class="step-number">3</div>
+            <h3>Yayınla & Paylaş</h3>
+            <p>Bir tıkla yayınla. Linkini Instagram bio'na veya WhatsApp'a ekle.</p>
+        </div>
+    </div>
+</section>
+
+<!-- FİYATLANDIRMA -->
+<section class="section" id="fiyatlandirma">
+    <div class="section-header animate-on-scroll">
+        <h2>Basit & Uygun <span class="gradient-text">Fiyatlandırma</span></h2>
+        <p>14 gün ücretsiz dene. Kart bilgisi gerekmez. İstediğin zaman iptal et.</p>
+    </div>
+
+    <div class="pricing-grid">
+
+        <!-- BASIC -->
+        <div class="pricing-card animate-on-scroll">
+            <h3>⭐ Basic</h3>
+            <p style="color:var(--text-dim);font-size:0.9rem;">Yeni başlayanlar için</p>
+            <div class="price">
+                <span class="currency">$</span>5
+                <span class="period">/ ay</span>
+            </div>
+            <ul class="pricing-features">
+                <li><span class="check">✓</span> 1 mağaza sayfası</li>
+                <li><span class="check">✓</span> 10 ürün</li>
+                <li><span class="check">✓</span> WhatsApp butonu</li>
+                <li><span class="check">✓</span> Temel tema</li>
+                <li><span class="check">✓</span> sayfakur.com/ismin linki</li>
+                <li><span class="cross">✗</span> Özel domain</li>
+                <li><span class="cross">✗</span> Analitik</li>
+            </ul>
+            <a href="/kayit.html" class="btn btn-secondary btn-full">Ücretsiz Dene</a>
+        </div>
+
+        <!-- PRO -->
+        <div class="pricing-card popular animate-on-scroll">
+            <div class="popular-badge">🔥 En Popüler</div>
+            <h3>🚀 Pro</h3>
+            <p style="color:var(--text-dim);font-size:0.9rem;">Büyüyen işletmeler için</p>
+            <div class="price">
+                <span class="currency">$</span>10
+                <span class="period">/ ay</span>
+            </div>
+            <ul class="pricing-features">
+                <li><span class="check">✓</span> 5 mağaza sayfası</li>
+                <li><span class="check">✓</span> Sınırsız ürün</li>
+                <li><span class="check">✓</span> WhatsApp + Instagram</li>
+                <li><span class="check">✓</span> Tüm temalar</li>
+                <li><span class="check">✓</span> Watermark kaldırma</li>
+                <li><span class="check">✓</span> PDF katalog export</li>
+                <li><span class="check">✓</span> Temel analitik</li>
+                <li><span class="cross">✗</span> Özel domain</li>
+            </ul>
+            <a href="/kayit.html" class="btn btn-primary btn-full">Ücretsiz Dene</a>
+        </div>
+
+        <!-- BUSINESS -->
+        <div class="pricing-card animate-on-scroll">
+            <h3>💎 Business</h3>
+            <p style="color:var(--text-dim);font-size:0.9rem;">Profesyoneller için</p>
+            <div class="price">
+                <span class="currency">$</span>20
+                <span class="period">/ ay</span>
+            </div>
+            <ul class="pricing-features">
+                <li><span class="check">✓</span> Sınırsız sayfa</li>
+                <li><span class="check">✓</span> Sınırsız ürün</li>
+                <li><span class="check">✓</span> Özel domain bağlama</li>
+                <li><span class="check">✓</span> Gelişmiş analitik</li>
+                <li><span class="check">✓</span> CRM (müşteri takip)</li>
+                <li><span class="check">✓</span> Teklif / fatura</li>
+                <li><span class="check">✓</span> Öncelikli destek</li>
+            </ul>
+            <a href="/kayit.html" class="btn btn-accent btn-full">Ücretsiz Dene</a>
+        </div>
+    </div>
+</section>
+
+<!-- YORUMLAR -->
+<section class="section" style="background:rgba(6,182,212,0.03);">
+    <div class="section-header animate-on-scroll">
+        <h2>Kullanıcılarımız <span class="gradient-text">Ne Diyor?</span></h2>
+    </div>
+
+    <div class="testimonials-grid">
+        <div class="testimonial-card animate-on-scroll">
+            <p>"Instagram'dan pasta satıyorum. SayfaKur sayesinde artık müşterilerim direkt menümü görüp sipariş veriyor!"</p>
+            <div class="testimonial-author">
+                <div class="testimonial-avatar">A</div>
+                <div class="testimonial-info">
+                    <h4>Ayşe K.</h4>
+                    <span>Ev Yapımı Pasta</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="testimonial-card animate-on-scroll">
+            <p>"Freelancer olarak portföyümü paylaşmak çok kolaylaştı. CV sayfamı her yere gönderebiliyorum."</p>
+            <div class="testimonial-author">
+                <div class="testimonial-avatar">M</div>
+                <div class="testimonial-info">
+                    <h4>Mehmet T.</h4>
+                    <span>Grafik Tasarımcı</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="testimonial-card animate-on-scroll">
+            <p>"Emlak ilanlarımı artık profesyonel sayfalarla paylaşıyorum. Müşterilerim çok beğeniyor."</p>
+            <div class="testimonial-author">
+                <div class="testimonial-avatar">S</div>
+                <div class="testimonial-info">
+                    <h4>Serkan Y.</h4>
+                    <span>Emlak Danışmanı</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+    <div class="cta-box animate-on-scroll">
+        <h2>Hemen Başla, <span class="gradient-text">Ücretsiz Dene</span></h2>
+        <p>14 gün boyunca tüm özellikleri ücretsiz dene. Kart bilgisi gerekmez.</p>
+        <a href="/kayit.html" class="btn btn-primary btn-lg">
+            🚀 Ücretsiz Hesap Oluştur
+        </a>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <h3>⚡ SayfaKur</h3>
+            <p>2 dakikada online mağaza, CV, portföy ve satış sayfası oluştur.</p>
+        </div>
+        <div class="footer-col">
+            <h4>Ürün</h4>
+            <a href="#ozellikler">Özellikler</a>
+            <a href="#fiyatlandirma">Fiyatlandırma</a>
+            <a href="#nasil-calisir">Nasıl Çalışır</a>
+        </div>
+        <div class="footer-col">
+            <h4>Şirket</h4>
+            <a href="/hakkimizda.html">Hakkımızda</a>
+            <a href="/iletisim.html">İletişim</a>
+        </div>
+        <div class="footer-col">
+            <h4>Yasal</h4>
+            <a href="/gizlilik.html">Gizlilik Politikası</a>
+            <a href="/iletisim.html">Destek</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2025 SayfaKur. Tüm hakları saklıdır.</p>
+    </div>
+</footer>
+
+<!-- Cookie Banner -->
+<div class="cookie-banner" id="cookie-banner">
+    <p>🍪 Bu site deneyiminizi geliştirmek için çerez kullanır. <a href="/gizlilik.html">Gizlilik Politikası</a></p>
+    <button class="btn btn-sm btn-primary" onclick="acceptCookies()">Kabul Et</button>
+</div>
+
+<script>
+    // Cookie banner
+    if (localStorage.getItem('cookieAccepted')) {
+        document.getElementById('cookie-banner').style.display = 'none';
+    }
+    function acceptCookies() {
+        localStorage.setItem('cookieAccepted', 'true');
+        document.getElementById('cookie-banner').style.display = 'none';
+    }
+
+    // Hamburger menü
+    function toggleMenu() {
+        document.getElementById('nav-links').classList.toggle('open');
+    }
+
+    // Scroll animasyon
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    entry.target.classList.add('visible');
+                }, index * 100);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.animate-on-scroll').forEach(el => {
+        observer.observe(el);
+    });
+</script>
+
+</body>
+</html>
