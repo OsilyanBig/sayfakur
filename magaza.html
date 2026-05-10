@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yükleniyor... — SayfaKur</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: #0a0a1a;
+            color: #e2e8f0;
+            min-height: 100vh;
+        }
+
+        .loading-screen {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(255,255,255,0.1);
+            border-top-color: #7c3aed;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* MAĞAZA SAYFA STİLLERİ */
+        .store-page { min-height: 100vh; }
+
+        .store-hero {
+            padding: 50px 20px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .store-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: inherit;
+            filter: blur(60px);
+            opacity: 0.5;
+        }
+
+        .store-hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .store-logo {
+            width: 90px;
+            height: 90px;
+            border-radius: 20px;
+            object-fit: cover;
+            border: 3px solid rgba(255,255,255,0.2);
+            margin-bottom: 16px;
+            animation: scaleIn 0.5s ease;
+        }
+
+        .store-emoji {
+            font-size: 4rem;
+            margin-bottom: 16px;
+            display: block;
+            animation: scaleIn 0.5s ease;
+        }
+
+        .store-hero h1 {
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 8px;
+            animation: fadeInUp 0.5s ease 0.1s both;
+        }
+
+        .store-hero .store-desc {
+            font-size: 1rem;
+            opacity: 0.9;
+            max-width: 500px;
+            margin: 0 auto;
+            line-height: 1.6;
+            animation: fadeInUp 0.5s ease 0.2s both;
+        }
+
+        .store-meta {
+            margin-top: 16px;
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.5s ease 0.3s both;
+        }
+
+        .store-meta span {
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        /* Ürünler */
+        .store-products {
+            padding: 30px 20px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .store-products h2 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .product-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 18px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s;
+            animation: fadeInUp 0.5s ease both;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255,255,255,0.15);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+        }
+
+        .product-card .product-emoji {
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+        }
+
+        .product-card .product-img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 12px;
+        }
+
+        .product-card h3 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .product-card .product-desc {
+            font-size: 0.8rem;
+            color: #94a3b8;
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        .product-card .product-price {
+            font-size: 1.1rem;
+            font-weight: 900;
+        }
+
+        .product-card .product-no-price {
+            font-size: 0.8rem;
+            color: #94a3b8;
+        }
+
+        .category-title {
+            font-size: 1rem;
+            color: #94a3b8;
+            margin: 25px 0 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        /* WhatsApp CTA */
+        .store-cta {
+            padding: 20px 20px 30px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .whatsapp-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 18px;
+            border-radius: 16px;
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+
+        .whatsapp-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .instagram-btn {
+            display: block;
+            text-align: center;
+            padding: 12px;
+            margin-top: 10px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            border-radius: 12px;
+            transition: all 0.3s;
+            background: rgba(255,255,255,0.05);
+        }
+
+        .instagram-btn:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* Footer */
+        .store-footer {
+            text-align: center;
+            padding: 20px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            margin-top: 20px;
+        }
+
+        .store-footer a {
+            font-size: 0.75rem;
+            color: #4a4a6a;
+            text-decoration: none;
+        }
+
+        .store-footer a:hover {
+            color: #7c3aed;
+        }
+
+        /* 404 */
+        .not-found {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            gap: 15px;
+            padding: 20px;
+        }
+
+        .not-found h1 { font-size: 5rem; }
+        .not-found h2 { color: #94a3b8; }
+        .not-found a {
+            color: #7c3aed;
+            text-decoration: none;
+            padding: 12px 30px;
+            border: 1px solid #7c3aed;
+            border-radius: 12px;
+            margin-top: 10px;
+            transition: all 0.3s;
+        }
+        .not-found a:hover {
+            background: #7c3aed;
+            color: white;
+        }
+
+        @media (max-width: 480px) {
+            .products-grid { grid-template-columns: 1fr; }
+            .store-hero h1 { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Yükleniyor -->
+<div class="loading-screen" id="loading">
+    <div class="loading-spinner"></div>
+    <p style="color:#64748b;">Sayfa yükleniyor...</p>
+</div>
+
+<!-- Mağaza içeriği -->
+<div id="store-page" style="display:none;"></div>
+
+<!-- 404 -->
+<div class="not-found" id="not-found" style="display:none;">
+    <h1>😕</h1>
+    <h2>Bu sayfa bulunamadı</h2>
+    <p style="color:#64748b;">Aradığınız mağaza mevcut değil veya kaldırılmış olabilir.</p>
+    <a href="/">Ana Sayfaya Dön</a>
+</div>
+
+<!-- Supabase -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/supabase-config.js"></script>
+<script>
+    const THEMES = {
+        default: {
+            bg: 'linear-gradient(135deg, #7c3aed, #06b6d4)',
+            accent: '#06b6d4',
+            accentRgb: '6,182,212'
+        },
+        sunset: {
+            bg: 'linear-gradient(135deg, #f59e0b, #ef4444)',
+            accent: '#f59e0b',
+            accentRgb: '245,158,11'
+        },
+        forest: {
+            bg: 'linear-gradient(135deg, #10b981, #06b6d4)',
+            accent: '#10b981',
+            accentRgb: '16,185,129'
+        },
+        night: {
+            bg: 'linear-gradient(135deg, #4338ca, #7c3aed)',
+            accent: '#818cf8',
+            accentRgb: '129,140,248'
+        },
+        rose: {
+            bg: 'linear-gradient(135deg, #f43f5e, #f97316)',
+            accent: '#f43f5e',
+            accentRgb: '244,63,94'
+        }
+    };
+
+    const EMOJIS = {
+        default: '🛒', sunset: '🌅', forest: '🌿', night: '🌙', rose: '🌹'
+    };
+
+    async function loadStore() {
+        const slug = getSlugFromUrl();
+        if (!slug) { show404(); return; }
+
+        try {
+            // Mağaza bilgilerini getir
+            const { data: store, error } = await supabaseClient
+                .from('stores')
+                .select('*')
+                .eq('slug', slug)
+                .eq('is_published', true)
+                .single();
+
+            if (error || !store) { show404(); return; }
+
+            // Ürünleri getir
+            const { data: products } = await supabaseClient
+                .from('products')
+                .select('*')
+                .eq('store_id', store.id)
+                .eq('is_active', true)
+                .order('sort_order');
+
+            // Görüntülenme sayacı
+            await supabaseClient.from('page_views').insert({
+                store_id: store.id,
+                referrer: document.referrer || null,
+                user_agent: navigator.userAgent
+            });
+
+            // Görüntülenme sayısını güncelle
+            await supabaseClient
+                .from('stores')
+                .update({ view_count: (store.view_count || 0) + 1 })
+                .eq('id', store.id);
+
+            // Sayfayı render et
+            renderStore(store, products || []);
+
+        } catch (err) {
+            console.error(err);
+            show404();
+        }
+    }
+
+    function getSlugFromUrl() {
+        const path = window.location.pathname;
+        const parts = path.split('/');
+        // /m/slug formatı
+        if (parts[1] === 'm' && parts[2]) return parts[2];
+        return null;
+    }
+
+    function renderStore(store, products) {
+        const theme = THEMES[store.theme] || THEMES.default;
+        const emoji = EMOJIS[store.theme] || '🛒';
+
+        // Meta güncelle
+        document.title = `${store.store_name} — SayfaKur`;
+        const metaDesc = document.createElement('meta');
+        metaDesc.name = 'description';
+        metaDesc.content = store.description || `${store.store_name} mağaza sayfası`;
+        document.head.appendChild(metaDesc);
+
+        // Ürünleri kategoriye göre grupla
+        const grouped = {};
+        products.forEach(p => {
+            const cat = p.category || 'Ürünler';
+            if (!grouped[cat]) grouped[cat] = [];
+            grouped[cat].push(p);
+        });
+
+        let productsHtml = '';
+        Object.keys(grouped).forEach(cat => {
+            if (Object.keys(grouped).length > 1 || cat !== 'Ürünler') {
+                productsHtml += `<div class="category-title" style="grid-column:1/-1;">${escapeHtml(cat)}</div>`;
+            }
+            grouped[cat].forEach((p, i) => {
+                productsHtml += `
+                <div class="product-card" style="animation-delay:${i * 0.1}s;">
+                    ${p.image_url
+                        ? `<img src="${p.image_url}" class="product-img" alt="${escapeHtml(p.name)}">`
+                        : `<div class="product-emoji">📦</div>`
+                    }
+                    <h3>${escapeHtml(p.name)}</h3>
+                    ${p.description ? `<p class="product-desc">${escapeHtml(p.description)}</p>` : ''}
+                    ${p.price > 0
+                        ? `<div class="product-price" style="color:${theme.accent};">₺${Number(p.price).toLocaleString('tr-TR')}</div>`
+                        : `<div class="product-no-price">Fiyat sorunuz</div>`
+                    }
+                </div>
+                `;
+            });
+        });
+
+        const whatsappNum = store.whatsapp?.replace(/\D/g, '') || '';
+        const instaUser = store.instagram?.replace('@', '') || '';
+
+        const html = `
+        <div class="store-page">
+            <div class="store-hero" style="background:${theme.bg};">
+                <div class="store-hero-content">
+                    ${store.logo_url
+                        ? `<img src="${store.logo_url}" class="store-logo" alt="${escapeHtml(store.store_name)}">`
+                        : `<span class="store-emoji">${emoji}</span>`
+                    }
+                    <h1>${escapeHtml(store.store_name)}</h1>
+                    ${store.description ? `<p class="store-desc">${escapeHtml(store.description)}</p>` : ''}
+                    <div class="store-meta">
+                        ${store.address ? `<span>📍 ${escapeHtml(store.address)}</span>` : ''}
+                        ${store.instagram ? `<span>📸 ${escapeHtml(store.instagram)}</span>` : ''}
+                    </div>
+                </div>
+            </div>
+
+            <div class="store-products">
+                <h2>📦 Ürünlerimiz</h2>
+                <div class="products-grid">
+                    ${productsHtml || '<p style="text-align:center;color:#64748b;grid-column:1/-1;padding:40px 0;">Henüz ürün eklenmemiş</p>'}
+                </div>
+            </div>
+
+            <div class="store-cta">
+                ${whatsappNum ? `
+                <a href="https://wa.me/${whatsappNum}?text=Merhaba, ${encodeURIComponent(store.store_name)} üzerinden sipariş vermek istiyorum."
+                   class="whatsapp-btn" style="background:${theme.bg};">
+                    📱 WhatsApp'tan Sipariş Ver
+                </a>
+                ` : ''}
+                ${instaUser ? `
+                <a href="https://instagram.com/${instaUser}" target="_blank" class="instagram-btn" style="color:${theme.accent};">
+                    📸 Instagram'da Takip Et — @${instaUser}
+                </a>
+                ` : ''}
+                ${store.phone ? `
+                <a href="tel:${store.phone}" class="instagram-btn" style="color:${theme.accent};">
+                    📞 Ara — ${escapeHtml(store.phone)}
+                </a>
+                ` : ''}
+            </div>
+
+            <div class="store-footer">
+                <a href="https://sayfakur.vercel.app">⚡ SayfaKur ile oluşturuldu — Sende kur!</a>
+            </div>
+        </div>
+        `;
+
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('store-page').innerHTML = html;
+        document.getElementById('store-page').style.display = 'block';
+    }
+
+    function show404() {
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('not-found').style.display = 'flex';
+    }
+
+    function escapeHtml(str) {
+        if (!str) return '';
+        return str.replace(/&/g, '&amp;')
+                  .replace(/</g, '&lt;')
+                  .replace(/>/g, '&gt;')
+                  .replace(/"/g, '&quot;');
+    }
+
+    // BAŞLAT
+    loadStore();
+</script>
+
+</body>
+</html>
