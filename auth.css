@@ -1,0 +1,440 @@
+/* ========================================
+   SAYFAKUR — Auth Stil Dosyası
+   Kayıt / Giriş Sayfaları
+   ======================================== */
+
+.auth-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Arka plan efektleri */
+.auth-page::before {
+    content: '';
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(124, 58, 237, 0.12), transparent 70%);
+    top: -200px;
+    right: -200px;
+    animation: float 8s ease-in-out infinite;
+}
+
+.auth-page::after {
+    content: '';
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(6, 182, 212, 0.08), transparent 70%);
+    bottom: -150px;
+    left: -150px;
+    animation: float 10s ease-in-out infinite reverse;
+}
+
+/* Auth Kutusu */
+.auth-box {
+    width: 100%;
+    max-width: 460px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 28px;
+    padding: 50px 45px;
+    position: relative;
+    z-index: 1;
+    backdrop-filter: blur(20px);
+    animation: scaleIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Üst glow efekti */
+.auth-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(124, 58, 237, 0.5), transparent);
+}
+
+/* Logo */
+.auth-logo {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.auth-logo a {
+    font-size: 1.8rem;
+    font-weight: 900;
+    background: var(--gradient-1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-decoration: none;
+}
+
+.auth-logo p {
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    margin-top: 6px;
+}
+
+/* Başlık */
+.auth-title {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.auth-title h1 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+.auth-title p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+/* Form grupları */
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.form-group label span {
+    color: var(--danger);
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+.input-wrapper .input-icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.1rem;
+    pointer-events: none;
+}
+
+.form-input {
+    width: 100%;
+    padding: 14px 16px 14px 46px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.06);
+    border-radius: 14px;
+    color: var(--text);
+    font-size: 1rem;
+    transition: all 0.3s;
+    outline: none;
+    font-family: inherit;
+}
+
+.form-input:focus {
+    border-color: var(--primary);
+    background: rgba(124, 58, 237, 0.05);
+    box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.1);
+}
+
+.form-input::placeholder {
+    color: var(--text-dim);
+}
+
+/* Şifre göster/gizle */
+.toggle-password {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--text-dim);
+    cursor: pointer;
+    font-size: 1.1rem;
+    padding: 4px;
+    transition: color 0.3s;
+}
+
+.toggle-password:hover {
+    color: var(--text);
+}
+
+/* Şifre gücü */
+.password-strength {
+    margin-top: 8px;
+}
+
+.strength-bar {
+    height: 4px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 6px;
+}
+
+.strength-fill {
+    height: 100%;
+    border-radius: 2px;
+    transition: all 0.3s;
+    width: 0%;
+}
+
+.strength-fill.weak { width: 33%; background: var(--danger); }
+.strength-fill.medium { width: 66%; background: var(--warning); }
+.strength-fill.strong { width: 100%; background: var(--success); }
+
+.strength-text {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+}
+
+/* Checkbox */
+.checkbox-group {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--primary);
+    cursor: pointer;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.checkbox-group span {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+.checkbox-group a {
+    color: var(--primary-light);
+    text-decoration: none;
+}
+
+.checkbox-group a:hover {
+    text-decoration: underline;
+}
+
+/* Submit butonu */
+.auth-btn {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 14px;
+    background: var(--gradient-1);
+    color: white;
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 5px;
+    font-family: inherit;
+}
+
+.auth-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(124, 58, 237, 0.4);
+}
+
+.auth-btn:active {
+    transform: translateY(0);
+}
+
+.auth-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Ayırıcı */
+.auth-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 5px 0;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+}
+
+.auth-divider span {
+    color: var(--text-dim);
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
+
+/* Alt link */
+.auth-footer {
+    text-align: center;
+    margin-top: 25px;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.auth-footer a {
+    color: var(--primary-light);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.auth-footer a:hover {
+    color: var(--accent);
+}
+
+/* Hata mesajı */
+.auth-error {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    border-radius: 12px;
+    padding: 12px 16px;
+    color: #fca5a5;
+    font-size: 0.9rem;
+    display: none;
+    animation: fadeIn 0.3s ease;
+}
+
+.auth-error.show {
+    display: block;
+}
+
+/* Başarı mesajı */
+.auth-success {
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    border-radius: 12px;
+    padding: 12px 16px;
+    color: #6ee7b7;
+    font-size: 0.9rem;
+    display: none;
+    animation: fadeIn 0.3s ease;
+}
+
+.auth-success.show {
+    display: block;
+}
+
+/* Şifremi unuttum linki */
+.forgot-link {
+    text-align: right;
+    margin-top: -10px;
+}
+
+.forgot-link a {
+    color: var(--text-dim);
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.forgot-link a:hover {
+    color: var(--primary-light);
+}
+
+/* Plan seçimi (kayıt sayfasında) */
+.plan-selector {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 5px;
+}
+
+.plan-option {
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+}
+
+.plan-option:hover {
+    border-color: var(--primary);
+}
+
+.plan-option.selected {
+    border-color: var(--primary);
+    background: rgba(124, 58, 237, 0.1);
+}
+
+.plan-option .plan-name {
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.plan-option .plan-price {
+    font-size: 1.1rem;
+    font-weight: 900;
+    background: var(--gradient-1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.plan-option .plan-free {
+    font-size: 0.7rem;
+    color: var(--success);
+    margin-top: 4px;
+}
+
+.plan-option .popular-dot {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    width: 12px;
+    height: 12px;
+    background: var(--warning);
+    border-radius: 50%;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .auth-box {
+        padding: 35px 25px;
+        border-radius: 20px;
+    }
+
+    .plan-selector {
+        grid-template-columns: 1fr;
+    }
+
+    .auth-title h1 {
+        font-size: 1.5rem;
+    }
+}
