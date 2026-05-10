@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fiyatlandırma — SayfaKur</title>
+    <meta name="description" content="SayfaKur fiyatlandırma planları. $5'dan başlayan fiyatlarla online mağaza oluşturun.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="navbar-inner">
+        <a href="/" class="navbar-logo"><span>⚡</span> SayfaKur</a>
+        <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+        <div class="navbar-links" id="nav-links">
+            <a href="/#ozellikler">Özellikler</a>
+            <a href="/fiyatlandirma.html">Fiyatlandırma</a>
+            <a href="/giris.html" class="nav-btn nav-btn-ghost">Giriş Yap</a>
+            <a href="/kayit.html" class="nav-btn nav-btn-primary">Ücretsiz Başla</a>
+        </div>
+    </div>
+</nav>
+
+<div style="padding-top:120px;"></div>
+
+<section class="section" id="fiyatlandirma">
+    <div class="section-header animate-on-scroll">
+        <h2>Basit & Uygun <span class="gradient-text">Fiyatlandırma</span></h2>
+        <p>14 gün ücretsiz dene. Kart bilgisi gerekmez. İstediğin zaman iptal et.</p>
+    </div>
+
+    <div class="pricing-grid">
+
+        <!-- BASIC -->
+        <div class="pricing-card animate-on-scroll">
+            <h3>⭐ Basic</h3>
+            <p style="color:var(--text-dim);font-size:0.9rem;">Yeni başlayanlar için</p>
+            <div class="price">
+                <span class="currency">$</span>5
+                <span class="period">/ ay</span>
+            </div>
+            <ul class="pricing-features">
+                <li><span class="check">✓</span> 1 mağaza sayfası</li>
+                <li><span class="check">✓</span> 10 ürün</li>
+                <li><span class="check">✓</span> WhatsApp butonu</li>
+                <li><span class="check">✓</span> Temel tema</li>
+                <li><span class="check">✓</span> sayfakur.com/ismin linki</li>
+                <li><span class="cross">✗</span> Özel domain</li>
+                <li><span class="cross">✗</span> Analitik</li>
+                <li><span class="cross">✗</span> CRM</li>
+            </ul>
+            <a href="/kayit.html" class="btn btn-secondary btn-full">Ücretsiz Dene</a>
+        </div>
+
+        <!-- PRO -->
+        <div class="pricing-card popular animate-on-scroll">
+            <div class="popular-badge">🔥 En Popüler</div>
+            <h3>🚀 Pro</h3>
+            <p style="color:var(--text-dim);font-size:0.9rem;">Büyüyen işletmeler için</p>
+            <div class="price">
+                <span class="currency">$</span>10
+                <span class="period">/ ay</span>
+            </div>
+            <ul class="pricing-features">
+                <li><span class="check">✓</span> 5 mağaza sayfası</li>
+                <li><span class="check">✓</span> Sınırsız ürün</li>
+                <li><span class="check">✓</span> WhatsApp + Instagram</li>
+                <li><span class="check">✓</span> Tüm temalar</li>
+                <li><span class="check">✓</span> Watermark kaldırma</li>
+                <li><span class="check">✓</span> PDF katalog export</li>
+                <li><span class="check">✓</span> Temel analitik</li>
+                <li><span class="cross">✗</span> Özel domain</li>
+            </ul>
+            <a href="/kayit.html" class="btn btn-primary btn-full">Ücretsiz Dene</a>
+        </div>
+
+        <!-- BUSINESS -->
+        <div class="pricing-card animate-on-scroll">
+            <h3>💎 Business</h3>
+            <p style="color:var(--text-dim);font-size:0.9rem;">Profesyoneller için</p>
+            <div class="price">
+                <span class="currency">$</span>20
+                <span class="period">/ ay</span>
+            </div>
+            <ul class="pricing-features">
+                <li><span class="check">✓</span> Sınırsız sayfa</li>
+                <li><span class="check">✓</span> Sınırsız ürün</li>
+                <li><span class="check">✓</span> Özel domain bağlama</li>
+                <li><span class="check">✓</span> Gelişmiş analitik</li>
+                <li><span class="check">✓</span> CRM (müşteri takip)</li>
+                <li><span class="check">✓</span> Teklif / fatura</li>
+                <li><span class="check">✓</span> Öncelikli destek</li>
+                <li><span class="check">✓</span> API erişimi</li>
+            </ul>
+            <a href="/kayit.html" class="btn btn-accent btn-full">Ücretsiz Dene</a>
+        </div>
+    </div>
+
+    <!-- SSS -->
+    <div style="max-width:700px;margin:80px auto 0;" class="faq-section">
+        <h2 style="text-align:center;margin-bottom:30px;">Sıkça Sorulan Sorular</h2>
+
+        <article class="faq-item">
+            <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+                <span>Ücretsiz deneme nasıl çalışır?</span>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="faq-answer">
+                <p>14 gün boyunca tüm Pro özellikleri ücretsiz kullanabilirsiniz. Kart bilgisi gerekmez. Süre sonunda otomatik ücretlendirme yapılmaz.</p>
+            </div>
+        </article>
+
+        <article class="faq-item">
+            <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+                <span>İstediğim zaman iptal edebilir miyim?</span>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="faq-answer">
+                <p>Evet, istediğiniz zaman planınızı iptal edebilirsiniz. Kalan süre boyunca kullanmaya devam edersiniz.</p>
+            </div>
+        </article>
+
+        <article class="faq-item">
+            <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+                <span>Ödeme yöntemleri nelerdir?</span>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="faq-answer">
+                <p>Kredi kartı, banka kartı ile ödeme yapabilirsiniz. Stripe altyapısı ile güvenli ödeme.</p>
+            </div>
+        </article>
+
+        <article class="faq-item">
+            <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+                <span>Özel domain nasıl bağlanır?</span>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="faq-answer">
+                <p>Business planında özel domain bağlayabilirsiniz. Domain'inizi satın alın (yaklaşık $8/yıl), DNS ayarlarını yapın ve panelden bağlayın.</p>
+            </div>
+        </article>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+    <div class="cta-box animate-on-scroll">
+        <h2>Hemen Başla, <span class="gradient-text">Ücretsiz Dene</span></h2>
+        <p>14 gün boyunca tüm özellikleri ücretsiz dene.</p>
+        <a href="/kayit.html" class="btn btn-primary btn-lg">🚀 Ücretsiz Hesap Oluştur</a>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <h3>⚡ SayfaKur</h3>
+            <p>2 dakikada online mağaza, CV, portföy ve satış sayfası oluştur.</p>
+        </div>
+        <div class="footer-col">
+            <h4>Ürün</h4>
+            <a href="/#ozellikler">Özellikler</a>
+            <a href="/fiyatlandirma.html">Fiyatlandırma</a>
+        </div>
+        <div class="footer-col">
+            <h4>Şirket</h4>
+            <a href="/hakkimizda.html">Hakkımızda</a>
+            <a href="/iletisim.html">İletişim</a>
+        </div>
+        <div class="footer-col">
+            <h4>Yasal</h4>
+            <a href="/gizlilik.html">Gizlilik Politikası</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2025 SayfaKur. Tüm hakları saklıdır.</p>
+    </div>
+</footer>
+
+<script>
+    function toggleMenu() {
+        document.getElementById('nav-links').classList.toggle('open');
+    }
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, i) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => entry.target.classList.add('visible'), i * 100);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
