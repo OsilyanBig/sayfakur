@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /dashboard.html
+Disallow: /olustur.html
+Disallow: /kayit.html
+Disallow: /giris.html
+
+Sitemap: https://sayfakur.vercel.app/sitemap.xml
