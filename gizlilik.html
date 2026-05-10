@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gizlilik Politikası — SayfaKur</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<nav class="navbar">
+    <div class="navbar-inner">
+        <a href="/" class="navbar-logo"><span>⚡</span> SayfaKur</a>
+        <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+        <div class="navbar-links" id="nav-links">
+            <a href="/giris.html" class="nav-btn nav-btn-ghost">Giriş Yap</a>
+            <a href="/kayit.html" class="nav-btn nav-btn-primary">Ücretsiz Başla</a>
+        </div>
+    </div>
+</nav>
+<div style="padding-top:100px;"></div>
+<div style="max-width:700px;margin:0 auto;padding:40px 20px;">
+    <div class="card" style="background:var(--bg-card);border:1px solid var(--border);border-radius:24px;padding:40px;">
+        <h1 style="font-size:2rem;margin-bottom:20px;">🔒 Gizlilik Politikası</h1>
+        <p style="color:var(--text-dim);font-size:0.85rem;margin-bottom:20px;">Son güncelleme: Ocak 2025</p>
+
+        <h2 style="font-size:1.2rem;margin:25px 0 10px;color:var(--accent);">1. Genel Bilgi</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:15px;">SayfaKur olarak kullanıcılarımızın gizliliğine saygı duyuyor ve kişisel verilerinizi korumayı taahhüt ediyoruz.</p>
+
+        <h2 style="font-size:1.2rem;margin:25px 0 10px;color:var(--accent);">2. Toplanan Veriler</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:15px;">Kayıt olduğunuzda e-posta adresiniz ve adınız saklanır. Mağaza oluşturduğunuzda girdiğiniz bilgiler veritabanımızda tutulur. Şifreleriniz şifrelenerek saklanır.</p>
+
+        <h2 style="font-size:1.2rem;margin:25px 0 10px;color:var(--accent);">3. Çerezler</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:15px;">Oturum yönetimi için çerez kullanılmaktadır. Tarayıcı ayarlarından çerezleri devre dışı bırakabilirsiniz.</p>
+
+        <h2 style="font-size:1.2rem;margin:25px 0 10px;color:var(--accent);">4. Veri Paylaşımı</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:15px;">Kişisel verileriniz üçüncü taraflarla paylaşılmaz. Ödeme işlemleri Stripe güvenli altyapısı üzerinden gerçekleştirilir.</p>
+
+        <h2 style="font-size:1.2rem;margin:25px 0 10px;color:var(--accent);">5. İletişim</h2>
+        <p style="color:var(--text-muted);line-height:1.8;">Sorularınız için <a href="/iletisim.html" style="color:var(--primary-light);">iletişim sayfamızı</a> ziyaret edin.</p>
+    </div>
+</div>
+<footer class="footer">
+    <div class="footer-bottom"><p>© 2025 SayfaKur. Tüm hakları saklıdır.</p></div>
+</footer>
+<script>function toggleMenu(){document.getElementById('nav-links').classList.toggle('open');}</script>
+</body>
+</html>
