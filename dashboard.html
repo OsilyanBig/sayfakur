@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard — SayfaKur</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/dashboard.css">
+</head>
+<body>
+
+<div class="dashboard-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+
+        <div class="sidebar-logo">
+            <a href="/">⚡ SayfaKur</a>
+            <p>Yönetim Paneli</p>
+        </div>
+
+        <!-- Kullanıcı Bilgisi -->
+        <div class="sidebar-user">
+            <div class="user-avatar" id="user-avatar">?</div>
+            <div class="user-info">
+                <h4 id="user-name">Yükleniyor...</h4>
+                <div class="user-plan plan-free" id="user-plan">⭐ Free</div>
+            </div>
+        </div>
+
+        <!-- Nav Linkleri -->
+        <nav class="sidebar-nav">
+            <div class="nav-label">Genel</div>
+            <a href="/dashboard.html" class="active">
+                <span class="nav-icon">🏠</span> Ana Panel
+            </a>
+            <a href="/olustur.html">
+                <span class="nav-icon">➕</span> Yeni Sayfa Oluştur
+            </a>
+
+            <div class="nav-label" style="margin-top:15px;">Araçlar</div>
+            <a href="#">
+                <span class="nav-icon">📊</span> Analitik
+                <span class="badge">Yakında</span>
+            </a>
+            <a href="#">
+                <span class="nav-icon">👥</span> CRM
+                <span class="badge">Yakında</span>
+            </a>
+            <a href="#">
+                <span class="nav-icon">📄</span> Teklif / Fatura
+                <span class="badge">Yakında</span>
+            </a>
+
+            <div class="nav-label" style="margin-top:15px;">Hesap</div>
+            <a href="/fiyatlandirma.html">
+                <span class="nav-icon">💎</span> Plan Yükselt
+            </a>
+            <a href="#">
+                <span class="nav-icon">⚙️</span> Ayarlar
+            </a>
+        </nav>
+
+        <!-- Alt Kısım -->
+        <div class="sidebar-bottom">
+            <a href="/iletisim.html">
+                <span>❓</span> Yardım & Destek
+            </a>
+            <a href="#" class="logout-btn" onclick="handleLogout()">
+                <span>🚪</span> Çıkış Yap
+            </a>
+        </div>
+    </aside>
+
+    <!-- MAIN -->
+    <div class="main-content">
+
+        <!-- TOP BAR -->
+        <div class="topbar">
+            <div class="topbar-left">
+                <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+                <div>
+                    <div class="topbar-title">Ana Panel</div>
+                </div>
+            </div>
+            <div class="topbar-right">
+                <a href="/olustur.html" class="btn btn-primary btn-sm">
+                    ➕ Yeni Sayfa
+                </a>
+            </div>
+        </div>
+
+        <!-- İÇERİK -->
+        <div class="page-content">
+
+            <!-- Plan Banner -->
+            <div class="plan-banner" id="plan-banner" style="display:none;">
+                <div class="plan-banner-text">
+                    <h3>🚀 Pro'ya Geç — Daha Fazla Sayfa, Daha Fazla Özellik</h3>
+                    <p>Şu an Free planındasınız. Pro ile 5 sayfa, sınırsız ürün ve daha fazlası!</p>
+                </div>
+                <a href="/fiyatlandirma.html" class="btn btn-primary btn-sm">Planları Gör →</a>
+            </div>
+
+            <!-- İSTATİSTİKLER -->
+            <div class="stats-grid">
+                <div class="stat-card animate-on-scroll">
+                    <div class="stat-icon">🏪</div>
+                    <div class="stat-value" id="stat-stores">0</div>
+                    <div class="stat-label">Toplam Mağaza</div>
+                </div>
+                <div class="stat-card animate-on-scroll">
+                    <div class="stat-icon">📦</div>
+                    <div class="stat-value" id="stat-products">0</div>
+                    <div class="stat-label">Toplam Ürün</div>
+                </div>
+                <div class="stat-card animate-on-scroll">
+                    <div class="stat-icon">👁️</div>
+                    <div class="stat-value" id="stat-views">0</div>
+                    <div class="stat-label">Toplam Görüntülenme</div>
+                </div>
+                <div class="stat-card animate-on-scroll">
+                    <div class="stat-icon">✅</div>
+                    <div class="stat-value" id="stat-published">0</div>
+                    <div class="stat-label">Yayınlanan Sayfa</div>
+                </div>
+            </div>
+
+            <!-- MAĞAZALARIM -->
+            <div class="section-title animate-on-scroll">
+                <div>
+                    <h2>🏪 Sayfalarım</h2>
+                    <p id="store-count-text">Sayfalarınız yükleniyor...</p>
+                </div>
+            </div>
+
+            <!-- Yükleniyor -->
+            <div id="loading-state" style="text-align:center;padding:60px;">
+                <div class="spinner" style="margin:0 auto;width:35px;height:35px;border-width:3px;"></div>
+                <p style="margin-top:15px;color:var(--text-dim);">Yükleniyor...</p>
+            </div>
+
+            <!-- Boş durum -->
+            <div class="empty-state" id="empty-state" style="display:none;">
+                <div class="empty-icon">🛒</div>
+                <h3>Henüz sayfanız yok</h3>
+                <p>İlk mağaza sayfanızı oluşturun ve müşterilerinize ulaşın!</p>
+                <a href="/olustur.html" class="btn btn-primary">➕ İlk Sayfamı Oluştur</a>
+            </div>
+
+            <!-- Mağaza grid -->
+            <div class="stores-grid" id="stores-grid" style="display:none;"></div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Silme onay modali -->
+<div class="modal-overlay" id="delete-modal" style="display:none;">
+    <div class="modal">
+        <h3>🗑️ Sayfayı Sil</h3>
+        <p>Bu sayfayı silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.</p>
+        <div class="modal-actions">
+            <button class="btn btn-secondary" onclick="closeDeleteModal()">İptal</button>
+            <button class="btn btn-danger" onclick="confirmDelete()">Evet, Sil</button>
+        </div>
+    </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast" style="display:none;"></div>
+
+<!-- Supabase -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/supabase-config.js"></script>
+<script>
+    let currentUser = null;
+    let userProfile = null;
+    let stores = [];
+    let deleteStoreId = null;
+
+    // ===== BAŞLANGIÇ =====
+    async function init() {
+        currentUser = await requireAuth();
+        if (!currentUser) return;
+
+        await loadProfile();
+        await loadStores();
+        initScrollAnimations();
+    }
+
+    // ===== PROFİL YÜKLE =====
+    async function loadProfile() {
+        try {
+            const { data, error } = await supabaseClient
+                .from('profiles')
+                .select('*')
+                .eq('id', currentUser.id)
+                .single();
+
+            if (error) throw error;
+            userProfile = data;
+
+            // UI güncelle
+            const name = data.full_name || currentUser.email;
+            document.getElementById('user-name').textContent = name;
+            document.getElementById('user-avatar').textContent = name.charAt(0).toUpperCase();
+
+            const planEl = document.getElementById('user-plan');
+            const plans = {
+                free: { text: '⭐ Free', cls: 'plan-free' },
+                basic: { text: '🟢 Basic', cls: 'plan-basic' },
+                pro: { text: '🚀 Pro', cls: 'plan-pro' },
+                business: { text: '💎 Business', cls: 'plan-business' }
+            };
+            const plan = plans[data.plan] || plans.free;
+            planEl.textContent = plan.text;
+            planEl.className = 'user-plan ' + plan.cls;
+
+            // Free plan banner
+            if (data.plan === 'free') {
+                document.getElementById('plan-banner').style.display = 'flex';
+            }
+
+        } catch (err) {
+            console.error('Profil yüklenemedi:', err);
+        }
+    }
+
+    // ===== MAĞAZALARI YÜKLE =====
+    async function loadStores() {
+        try {
+            const { data, error } = await supabaseClient
+                .from('stores')
+                .select(`
+                    *,
+                    products(count)
+                `)
+                .eq('user_id', currentUser.id)
+                .order('created_at', { ascending: false });
+
+            if (error) throw error;
+            stores = data || [];
+
+            renderStores();
+            updateStats();
+
+        } catch (err) {
+            console.error('Mağazalar yüklenemedi:', err);
+            showToast('Mağazalar yüklenirken hata oluştu', 'error');
+        }
+    }
+
+    // ===== MAĞAZALARI RENDER ET =====
+    function renderStores() {
+        const grid = document.getElementById('stores-grid');
+        const emptyState = document.getElementById('empty-state');
+        const loadingState = document.getElementById('loading-state');
+        const countText = document.getElementById('store-count-text');
+
+        loadingState.style.display = 'none';
+
+        if (stores.length === 0) {
+            emptyState.style.display = 'block';
+            grid.style.display = 'none';
+            countText.textContent = 'Henüz sayfa oluşturmadınız';
+            return;
+        }
+
+        emptyState.style.display = 'none';
+        grid.style.display = 'grid';
+        countText.textContent = `${stores.length} sayfa oluşturuldu`;
+
+        // Limit kontrolü
+        const limits = { free: 1, basic: 1, pro: 5, business: Infinity };
+        const plan = userProfile?.plan || 'free';
+        const limit = limits[plan] || 1;
+
+        let html = '';
+
+        stores.forEach(store => {
+            const productCount = store.products?.[0]?.count || 0;
+            const isPublished = store.is_published;
+            const storeUrl = `https://sayfakur.vercel.app/m/${store.slug}`;
+
+            html += `
+            <div class="store-card animate-on-scroll">
+                <div class="store-cover" style="background: ${getStoreGradient(store.theme)}">
+                    ${store.logo_url
+                        ? `<img src="${store.logo_url}" style="width:60px;height:60px;border-radius:12px;object-fit:cover;">`
+                        : `<span style="font-size:3rem;">${getStoreEmoji(store.theme)}</span>`
+                    }
+                    <span class="store-status ${isPublished ? 'status-published' : 'status-draft'}">
+                        ${isPublished ? '🟢 Yayında' : '⚠️ Taslak'}
+                    </span>
+                </div>
+                <div class="store-info">
+                    <h3>${escapeHtml(store.store_name)}</h3>
+                    <div class="store-slug">⚡ sayfakur.vercel.app/m/${store.slug}</div>
+                    <div class="store-stats">
+                        <span class="store-stat">📦 ${productCount} ürün</span>
+                        <span class="store-stat">👁️ ${store.view_count || 0} görüntülenme</span>
+                    </div>
+                    <div class="store-actions">
+                        <a href="/olustur.html?edit=${store.id}" class="btn-edit">✏️ Düzenle</a>
+                        ${isPublished
+                            ? `<a href="${storeUrl}" target="_blank" class="btn-view">🔗 Görüntüle</a>`
+                            : `<button onclick="publishStore('${store.id}')" class="btn-view">🚀 Yayınla</button>`
+                        }
+                        <button onclick="openDeleteModal('${store.id}')" class="btn-delete">🗑️</button>
+                    </div>
+                </div>
+            </div>
+            `;
+        });
+
+        // Yeni sayfa butonu (limit dolmadıysa)
+        if (stores.length < limit) {
+            html += `
+            <a href="/olustur.html" class="store-card-new animate-on-scroll">
+                <div class="plus">+</div>
+                <span>Yeni Sayfa Oluştur</span>
+                <p>WhatsApp mağaza, CV, satış sayfası ve daha fazlası</p>
+            </a>
+            `;
+        } else if (plan !== 'business') {
+            html += `
+            <a href="/fiyatlandirma.html" class="store-card-new animate-on-scroll" style="border-color:rgba(124,58,237,0.3);">
+                <div class="plus" style="background:var(--gradient-3);">🔒</div>
+                <span style="color:var(--primary-light);">Limit Doldu</span>
+                <p>Daha fazla sayfa için planını yükselt</p>
+            </a>
+            `;
+        }
+
+        grid.innerHTML = html;
+        initScrollAnimations();
+    }
+
+    // ===== İSTATİSTİKLER =====
+    function updateStats() {
+        document.getElementById('stat-stores').textContent = stores.length;
+
+        const totalProducts = stores.reduce((acc, s) => acc + (s.products?.[0]?.count || 0), 0);
+        document.getElementById('stat-products').textContent = totalProducts;
+
+        const totalViews = stores.reduce((acc, s) => acc + (s.view_count || 0), 0);
+        document.getElementById('stat-views').textContent = totalViews;
+
+        const published = stores.filter(s => s.is_published).length;
+        document.getElementById('stat-published').textContent = published;
+    }
+
+    // ===== YAYINLA =====
+    async function publishStore(storeId) {
+        try {
+            const { error } = await supabaseClient
+                .from('stores')
+                .update({ is_published: true })
+                .eq('id', storeId)
+                .eq('user_id', currentUser.id);
+
+            if (error) throw error;
+
+            showToast('Sayfanız yayınlandı! 🎉', 'success');
+            await loadStores();
+
+        } catch (err) {
+            showToast('Yayınlama başarısız: ' + err.message, 'error');
+        }
+    }
+
+    // ===== SİLME MODAL =====
+    function openDeleteModal(storeId) {
+        deleteStoreId = storeId;
+        document.getElementById('delete-modal').style.display = 'flex';
+    }
+
+    function closeDeleteModal() {
+        deleteStoreId = null;
+        document.getElementById('delete-modal').style.display = 'none';
+    }
+
+    async function confirmDelete() {
+        if (!deleteStoreId) return;
+
+        try {
+            const { error } = await supabaseClient
+                .from('stores')
+                .delete()
+                .eq('id', deleteStoreId)
+                .eq('user_id', currentUser.id);
+
+            if (error) throw error;
+
+            closeDeleteModal();
+            showToast('Sayfa silindi', 'success');
+            await loadStores();
+
+        } catch (err) {
+            showToast('Silme başarısız: ' + err.message, 'error');
+        }
+    }
+
+    // ===== ÇIKIŞ =====
+    async function handleLogout() {
+        await signOut();
+    }
+
+    // ===== SIDEBAR (MOBİL) =====
+    function toggleSidebar() {
+        document.getElementById('sidebar').classList.toggle('open');
+    }
+
+    // Dışarı tıklayınca kapat
+    document.addEventListener('click', (e) => {
+        const sidebar = document.getElementById('sidebar');
+        const toggle = document.querySelector('.sidebar-toggle');
+        if (window.innerWidth <= 768 &&
+            !sidebar.contains(e.target) &&
+            e.target !== toggle &&
+            !toggle.contains(e.target)) {
+            sidebar.classList.remove('open');
+        }
+    });
+
+    // ===== TOAST =====
+    function showToast(msg, type = 'success') {
+        const toast = document.getElementById('toast');
+        toast.textContent = (type === 'success' ? '✅ ' : '❌ ') + msg;
+        toast.className = 'toast ' + type;
+        toast.style.display = 'block';
+        setTimeout(() => { toast.style.display = 'none'; }, 3500);
+    }
+
+    // ===== YARDIMCILAR =====
+    function getStoreGradient(theme) {
+        const gradients = {
+            default: 'linear-gradient(135deg, #7c3aed, #06b6d4)',
+            sunset: 'linear-gradient(135deg, #f59e0b, #ef4444)',
+            forest: 'linear-gradient(135deg, #10b981, #06b6d4)',
+            night: 'linear-gradient(135deg, #1e1b4b, #312e81)',
+            rose: 'linear-gradient(135deg, #f43f5e, #f97316)',
+        };
+        return gradients[theme] || gradients.default;
+    }
+
+    function getStoreEmoji(theme) {
+        const emojis = {
+            default: '🛒',
+            sunset: '🌅',
+            forest: '🌿',
+            night: '🌙',
+            rose: '🌹',
+        };
+        return emojis[theme] || '🛒';
+    }
+
+    function escapeHtml(str) {
+        if (!str) return '';
+        return str.replace(/&/g, '&amp;')
+                  .replace(/</g, '&lt;')
+                  .replace(/>/g, '&gt;')
+                  .replace(/"/g, '&quot;');
+    }
+
+    function initScrollAnimations() {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, i) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, i * 80);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.05 });
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+    }
+
+    // BAŞLAT
+    init();
+</script>
+
+</body>
+</html>
