@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kayıt Ol — SayfaKur</title>
+    <meta name="robots" content="noindex, follow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/auth.css">
+</head>
+<body>
+
+<div class="auth-page">
+    <div class="auth-box">
+
+        <!-- Logo -->
+        <div class="auth-logo">
+            <a href="/">⚡ SayfaKur</a>
+            <p>Online mağazanı 2 dakikada kur</p>
+        </div>
+
+        <!-- Başlık -->
+        <div class="auth-title">
+            <h1>Hesap Oluştur 🚀</h1>
+            <p>14 gün ücretsiz — kart bilgisi gerekmez</p>
+        </div>
+
+        <!-- Hata / Başarı -->
+        <div class="auth-error" id="error-msg"></div>
+        <div class="auth-success" id="success-msg"></div>
+
+        <!-- Form -->
+        <form class="auth-form" onsubmit="handleRegister(event)">
+
+            <!-- Ad Soyad -->
+            <div class="form-group">
+                <label>Ad Soyad <span>*</span></label>
+                <div class="input-wrapper">
+                    <span class="input-icon">👤</span>
+                    <input
+                        type="text"
+                        id="full-name"
+                        class="form-input"
+                        placeholder="Adınız Soyadınız"
+                        required
+                        autocomplete="name"
+                    >
+                </div>
+            </div>
+
+            <!-- E-posta -->
+            <div class="form-group">
+                <label>E-posta <span>*</span></label>
+                <div class="input-wrapper">
+                    <span class="input-icon">📧</span>
+                    <input
+                        type="email"
+                        id="email"
+                        class="form-input"
+                        placeholder="ornek@email.com"
+                        required
+                        autocomplete="email"
+                    >
+                </div>
+            </div>
+
+            <!-- Şifre -->
+            <div class="form-group">
+                <label>Şifre <span>*</span></label>
+                <div class="input-wrapper">
+                    <span class="input-icon">🔒</span>
+                    <input
+                        type="password"
+                        id="password"
+                        class="form-input"
+                        placeholder="En az 8 karakter"
+                        required
+                        autocomplete="new-password"
+                        oninput="checkPasswordStrength(this.value)"
+                    >
+                    <button type="button" class="toggle-password" onclick="togglePass('password')">👁️</button>
+                </div>
+                <!-- Şifre gücü -->
+                <div class="password-strength" id="strength-bar" style="display:none;">
+                    <div class="strength-bar">
+                        <div class="strength-fill" id="strength-fill"></div>
+                    </div>
+                    <span class="strength-text" id="strength-text"></span>
+                </div>
+            </div>
+
+            <!-- Şifre Tekrar -->
+            <div class="form-group">
+                <label>Şifre Tekrar <span>*</span></label>
+                <div class="input-wrapper">
+                    <span class="input-icon">🔒</span>
+                    <input
+                        type="password"
+                        id="password-confirm"
+                        class="form-input"
+                        placeholder="Şifreyi tekrar girin"
+                        required
+                        autocomplete="new-password"
+                    >
+                    <button type="button" class="toggle-password" onclick="togglePass('password-confirm')">👁️</button>
+                </div>
+            </div>
+
+            <!-- Sözleşme -->
+            <label class="checkbox-group">
+                <input type="checkbox" id="terms" required>
+                <span>
+                    <a href="/gizlilik.html" target="_blank">Gizlilik Politikası</a>'nı
+                    ve Kullanım Şartları'nı okudum, kabul ediyorum.
+                </span>
+            </label>
+
+            <!-- Kayıt Butonu -->
+            <button type="submit" class="auth-btn" id="submit-btn">
+                <span id="btn-text">🚀 Ücretsiz Başla</span>
+                <div class="spinner" id="btn-spinner" style="display:none;width:20px;height:20px;border-width:2px;"></div>
+            </button>
+
+        </form>
+
+        <!-- Alt Link -->
+        <div class="auth-footer">
+            Zaten hesabın var mı?
+            <a href="/giris.html">Giriş Yap</a>
+        </div>
+
+    </div>
+</div>
+
+<!-- Supabase -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/supabase-config.js"></script>
+<script>
+    // Giriş yapmışsa yönlendir
+    redirectIfLoggedIn();
+
+    // Şifre gücü kontrolü
+    function checkPasswordStrength(val) {
+        const bar = document.getElementById('strength-bar');
+        const fill = document.getElementById('strength-fill');
+        const text = document.getElementById('strength-text');
+
+        if (val.length === 0) {
+            bar.style.display = 'none';
+            return;
+        }
+
+        bar.style.display = 'block';
+
+        let score = 0;
+        if (val.length >= 8) score++;
+        if (/[A-Z]/.test(val)) score++;
+        if (/[0-9]/.test(val)) score++;
+        if (/[^A-Za-z0-9]/.test(val)) score++;
+
+        fill.className = 'strength-fill';
+
+        if (score <= 1) {
+            fill.classList.add('weak');
+            text.textContent = '⚠️ Zayıf şifre';
+            text.style.color = '#ef4444';
+        } else if (score <= 2) {
+            fill.classList.add('medium');
+            text.textContent = '⚡ Orta şifre';
+            text.style.color = '#f59e0b';
+        } else {
+            fill.classList.add('strong');
+            text.textContent = '✅ Güçlü şifre';
+            text.style.color = '#10b981';
+        }
+    }
+
+    // Şifre göster/gizle
+    function togglePass(id) {
+        const input = document.getElementById(id);
+        input.type = input.type === 'password' ? 'text' : 'password';
+    }
+
+    // Hata göster
+    function showError(msg) {
+        const el = document.getElementById('error-msg');
+        el.textContent = '❌ ' + msg;
+        el.classList.add('show');
+        document.getElementById('success-msg').classList.remove('show');
+    }
+
+    // Başarı göster
+    function showSuccess(msg) {
+        const el = document.getElementById('success-msg');
+        el.textContent = '✅ ' + msg;
+        el.classList.add('show');
+        document.getElementById('error-msg').classList.remove('show');
+    }
+
+    // Loading
+    function setLoading(loading) {
+        const btn = document.getElementById('submit-btn');
+        const text = document.getElementById('btn-text');
+        const spinner = document.getElementById('btn-spinner');
+        btn.disabled = loading;
+        text.style.display = loading ? 'none' : 'flex';
+        spinner.style.display = loading ? 'block' : 'none';
+    }
+
+    // Kayıt fonksiyonu
+    async function handleRegister(e) {
+        e.preventDefault();
+
+        const fullName = document.getElementById('full-name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value;
+        const passwordConfirm = document.getElementById('password-confirm').value;
+
+        // Validasyon
+        if (!fullName || fullName.length < 2) {
+            showError('Lütfen adınızı ve soyadınızı girin.');
+            return;
+        }
+
+        if (password.length < 8) {
+            showError('Şifre en az 8 karakter olmalıdır.');
+            return;
+        }
+
+        if (password !== passwordConfirm) {
+            showError('Şifreler eşleşmiyor.');
+            return;
+        }
+
+        setLoading(true);
+
+        try {
+            const { data, error } = await supabaseClient.auth.signUp({
+                email,
+                password,
+                options: {
+                    data: {
+                        full_name: fullName
+                    },
+                    emailRedirectTo: 'https://sayfakur.vercel.app/dashboard.html'
+                }
+            });
+
+            if (error) throw error;
+
+            if (data.user) {
+                if (data.user.identities && data.user.identities.length === 0) {
+                    showError('Bu e-posta adresi zaten kayıtlı. Giriş yapmayı deneyin.');
+                } else if (data.session) {
+                    // Direkt giriş yapıldı
+                    showSuccess('Hesabınız oluşturuldu! Dashboard\'a yönlendiriliyorsunuz...');
+                    setTimeout(() => {
+                        window.location.href = '/dashboard.html';
+                    }, 1500);
+                } else {
+                    // Email doğrulama gerekiyor
+                    showSuccess('Hesabınız oluşturuldu! E-posta adresinize bir doğrulama linki gönderdik. Lütfen e-postanızı kontrol edin.');
+                }
+            }
+
+        } catch (err) {
+            console.error(err);
+            const messages = {
+                'User already registered': 'Bu e-posta adresi zaten kayıtlı.',
+                'Invalid email': 'Geçersiz e-posta adresi.',
+                'Password should be at least 6 characters': 'Şifre en az 6 karakter olmalıdır.',
+                'Signup requires a valid password': 'Geçerli bir şifre girin.',
+            };
+            showError(messages[err.message] || 'Bir hata oluştu. Lütfen tekrar deneyin.');
+        } finally {
+            setLoading(false);
+        }
+    }
+</script>
+
+</body>
+</html>
