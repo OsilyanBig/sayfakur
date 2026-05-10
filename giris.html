@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giriş Yap — SayfaKur</title>
+    <meta name="robots" content="noindex, follow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/auth.css">
+</head>
+<body>
+
+<div class="auth-page">
+    <div class="auth-box">
+
+        <!-- Logo -->
+        <div class="auth-logo">
+            <a href="/">⚡ SayfaKur</a>
+            <p>Hesabına giriş yap</p>
+        </div>
+
+        <!-- Başlık -->
+        <div class="auth-title">
+            <h1>Hoş Geldin 👋</h1>
+            <p>Hesabına giriş yaparak devam et</p>
+        </div>
+
+        <!-- Hata / Başarı -->
+        <div class="auth-error" id="error-msg"></div>
+        <div class="auth-success" id="success-msg"></div>
+
+        <!-- Form -->
+        <form class="auth-form" onsubmit="handleLogin(event)">
+
+            <!-- E-posta -->
+            <div class="form-group">
+                <label>E-posta</label>
+                <div class="input-wrapper">
+                    <span class="input-icon">📧</span>
+                    <input
+                        type="email"
+                        id="email"
+                        class="form-input"
+                        placeholder="ornek@email.com"
+                        required
+                        autocomplete="email"
+                    >
+                </div>
+            </div>
+
+            <!-- Şifre -->
+            <div class="form-group">
+                <label>Şifre</label>
+                <div class="input-wrapper">
+                    <span class="input-icon">🔒</span>
+                    <input
+                        type="password"
+                        id="password"
+                        class="form-input"
+                        placeholder="Şifreniz"
+                        required
+                        autocomplete="current-password"
+                    >
+                    <button type="button" class="toggle-password" onclick="togglePass('password')">👁️</button>
+                </div>
+            </div>
+
+            <!-- Şifremi Unuttum -->
+            <div class="forgot-link">
+                <a href="#" onclick="handleForgotPassword()">Şifremi Unuttum</a>
+            </div>
+
+            <!-- Beni Hatırla -->
+            <label class="checkbox-group">
+                <input type="checkbox" id="remember">
+                <span>Beni hatırla</span>
+            </label>
+
+            <!-- Giriş Butonu -->
+            <button type="submit" class="auth-btn" id="submit-btn">
+                <span id="btn-text">🚀 Giriş Yap</span>
+                <div class="spinner" id="btn-spinner" style="display:none;width:20px;height:20px;border-width:2px;"></div>
+            </button>
+
+        </form>
+
+        <!-- Alt Link -->
+        <div class="auth-footer">
+            Hesabın yok mu?
+            <a href="/kayit.html">Ücretsiz Kayıt Ol</a>
+        </div>
+
+    </div>
+</div>
+
+<!-- Supabase -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/supabase-config.js"></script>
+<script>
+    // Giriş yapmışsa yönlendir
+    redirectIfLoggedIn();
+
+    // Şifre göster/gizle
+    function togglePass(id) {
+        const input = document.getElementById(id);
+        input.type = input.type === 'password' ? 'text' : 'password';
+    }
+
+    // Hata göster
+    function showError(msg) {
+        const el = document.getElementById('error-msg');
+        el.textContent = '❌ ' + msg;
+        el.classList.add('show');
+        document.getElementById('success-msg').classList.remove('show');
+    }
+
+    // Başarı göster
+    function showSuccess(msg) {
+        const el = document.getElementById('success-msg');
+        el.textContent = '✅ ' + msg;
+        el.classList.add('show');
+        document.getElementById('error-msg').classList.remove('show');
+    }
+
+    // Loading
+    function setLoading(loading) {
+        const btn = document.getElementById('submit-btn');
+        const text = document.getElementById('btn-text');
+        const spinner = document.getElementById('btn-spinner');
+        btn.disabled = loading;
+        text.style.display = loading ? 'none' : 'flex';
+        spinner.style.display = loading ? 'block' : 'none';
+    }
+
+    // Giriş fonksiyonu
+    async function handleLogin(e) {
+        e.preventDefault();
+
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value;
+
+        if (!email || !password) {
+            showError('Lütfen tüm alanları doldurun.');
+            return;
+        }
+
+        setLoading(true);
+
+        try {
+            const { data, error } = await supabaseClient.auth.signInWithPassword({
+                email,
+                password
+            });
+
+            if (error) throw error;
+
+            if (data.user) {
+                showSuccess('Giriş başarılı! Yönlendiriliyorsunuz...');
+                setTimeout(() => {
+                    window.location.href = '/dashboard.html';
+                }, 1000);
+            }
+
+        } catch (err) {
+            console.error(err);
+            const messages = {
+                'Invalid login credentials': 'E-posta veya şifre hatalı.',
+                'Email not confirmed': 'Lütfen önce e-posta adresinizi doğrulayın.',
+                'Too many requests': 'Çok fazla deneme yaptınız. Lütfen bekleyin.',
+            };
+            showError(messages[err.message] || 'Giriş yapılamadı. Lütfen tekrar deneyin.');
+        } finally {
+            setLoading(false);
+        }
+    }
+
+    // Şifremi unuttum
+    async function handleForgotPassword() {
+        const email = document.getElementById('email').value.trim();
+
+        if (!email) {
+            showError('Lütfen önce e-posta adresinizi girin.');
+            return;
+        }
+
+        setLoading(true);
+
+        try {
+            const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
+                redirectTo: 'https://sayfakur.vercel.app/sifremi-sifirla.html'
+            });
+
+            if (error) throw error;
+
+            showSuccess('Şifre sıfırlama linki e-posta adresinize gönderildi!');
+
+        } catch (err) {
+            showError('E-posta gönderilemedi. Lütfen tekrar deneyin.');
+        } finally {
+            setLoading(false);
+        }
+    }
+
+    // Enter tuşu
+    document.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            document.querySelector('form').dispatchEvent(new Event('submit'));
+        }
+    });
+</script>
+
+</body>
+</html>
