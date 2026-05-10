@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hakkımızda — SayfaKur</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<nav class="navbar">
+    <div class="navbar-inner">
+        <a href="/" class="navbar-logo"><span>⚡</span> SayfaKur</a>
+        <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+        <div class="navbar-links" id="nav-links">
+            <a href="/#ozellikler">Özellikler</a>
+            <a href="/fiyatlandirma.html">Fiyatlandırma</a>
+            <a href="/giris.html" class="nav-btn nav-btn-ghost">Giriş Yap</a>
+            <a href="/kayit.html" class="nav-btn nav-btn-primary">Ücretsiz Başla</a>
+        </div>
+    </div>
+</nav>
+<div style="padding-top:100px;"></div>
+<div style="max-width:700px;margin:0 auto;padding:40px 20px;">
+    <div class="card" style="background:var(--bg-card);border:1px solid var(--border);border-radius:24px;padding:40px;">
+        <h1 style="font-size:2rem;margin-bottom:20px;">👋 Hakkımızda</h1>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:20px;">SayfaKur, küçük işletmelerin ve girişimcilerin online varlığını kolayca oluşturabilmesi için geliştirilen bir platformdur.</p>
+        <h2 style="font-size:1.3rem;margin-bottom:10px;color:var(--accent);">Misyonumuz</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:20px;">Herkesin 2 dakikada profesyonel bir online mağaza, CV veya satış sayfası oluşturabilmesini sağlamak. Kod bilmek gerekmiyor.</p>
+        <h2 style="font-size:1.3rem;margin-bottom:10px;color:var(--accent);">Neler Sunuyoruz?</h2>
+        <ul style="color:var(--text-muted);line-height:2;padding-left:20px;">
+            <li>WhatsApp sipariş sayfası</li>
+            <li>CV & Portföy sayfası</li>
+            <li>Dijital ürün satış sayfası</li>
+            <li>Emlak ilan sayfası</li>
+            <li>İş araçları (teklif, fatura, CRM)</li>
+        </ul>
+    </div>
+</div>
+<footer class="footer">
+    <div class="footer-bottom"><p>© 2025 SayfaKur. Tüm hakları saklıdır.</p></div>
+</footer>
+<script>function toggleMenu(){document.getElementById('nav-links').classList.toggle('open');}</script>
+</body>
+</html>
